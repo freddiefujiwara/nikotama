@@ -30,5 +30,13 @@ Nikotama.prototype.setJSONPFunction = function(url,callback,JSONPCallback){
     url += (-1 === url.indexOf('?')) ? '?callback=' + JSONPCallback : '&callback=' + JSONPCallback;
     return url;
 };
+Nikotama.prototype.on = function (target,event,callback) {
+    if (document.addEventListener) {
+        target.addEventListener(event, callback, false);
+    } else if (document.attachEvent) {
+        target[event + callback] =  function () { return callback.apply(target, arguments); };
+        target.attachEvent('on' + event, target[event + callback]);
+    }
+};
 
 module.exports = new Nikotama();

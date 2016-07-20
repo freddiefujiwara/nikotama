@@ -7,7 +7,7 @@ var gw = global.window;
 
 var currentDate = '';
 beforeEach(function(){
-    global.document = jsdom.jsdom('<!doctype html><html><head id="head"></head><body></body></html>');
+    global.document = jsdom.jsdom('<!doctype html><html><head id="head"></head><body><input type="button" id="button"></body></html>');
     global.window   = global.document.defaultView;
     var pad = function(n) { return n < 10 ? '0' + n : n; };
     var d = new Date();
@@ -28,7 +28,7 @@ describe('Nikotama',function(){
         assert.equal('object',typeof nikotama);
     });
     describe('#get',function(){
-        it('should be a functoin',function(){
+        it('should be a function',function(){
             assert.equal('function',typeof nikotama.get);
         });
         it('should return add the script ',function(){
@@ -39,7 +39,7 @@ describe('Nikotama',function(){
         });
     });
     describe('#setJSONPFunction',function(){
-        it('should be a functoin',function(){
+        it('should be a function',function(){
             assert.equal('function',typeof nikotama.setJSONPFunction);
         });
         it('should return url(w/o "?") + callback ',function(done){
@@ -72,6 +72,19 @@ describe('Nikotama',function(){
 
             assert.equal('function',typeof window['shinagawa_cb']);
             window['shinagawa_cb']();
+        });
+    });
+    describe('#on',function(){
+        it('should be a function',function(){
+            assert.equal('function',typeof nikotama.on);
+        });
+        it('should add event handler ',function(done){
+            var button = global.document.getElementById('button');
+            nikotama.on(button,'click',function(data){done()});
+            //emulate click event
+            var evt = document.createEvent("HTMLEvents"); 
+            evt.initEvent("click", false, true); 
+            button.dispatchEvent(evt)
         });
     });
 });
