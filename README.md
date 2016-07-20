@@ -8,5 +8,6 @@ var head = document.getElementsByTagName('head')[0];
 script.src='https://rawgit.com/freddiefujiwara/nikotama/master/dist/nikotama.bundle.js';
 script.type='application/javascript';
 head.appendChild(script);
-window.$.get('https://api.github.com/users/freddiefujiwara',function(data){console.log(data);});
+// wait for load
+$.get('https://api.github.com/users/freddiefujiwara',function(data){console.log(data);});
 ```
