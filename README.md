@@ -9,5 +9,5 @@ script.src='https://rawgit.com/freddiefujiwara/nikotama/master/dist/nikotama.bun
 script.type='application/javascript';
 head.appendChild(script);
 // wait for load
-$.get('https://api.github.com/users/freddiefujiwara',function(data){console.log(data);});
+$nikotama.get('https://api.github.com/users/freddiefujiwara',function(data){console.log(data);});
 ```
