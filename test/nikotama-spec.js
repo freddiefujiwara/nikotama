@@ -63,15 +63,15 @@ describe('Nikotama',function(){
             window['__nikotama_cb_'+currentDate+'0']();
         });
         it('should adopt fixed callback function ',function(done){
-            assert.equal('http://example.com?1=1&callback=nikotama_cb',
+            assert.equal('http://example.com?1=1&callback=shinagawa_cb',
                          nikotama.setJSONPFunction('http://example.com?1=1',function(data){
                              assert(true);
                              done();
-                         },'nikotama_cb'));
+                         },'shinagawa_cb'));
 
 
-            assert.equal('function',typeof window['nikotama_cb']);
-            window['nikotama_cb']();
+            assert.equal('function',typeof window['shinagawa_cb']);
+            window['shinagawa_cb']();
         });
     });
 });
