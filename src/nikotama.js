@@ -1,3 +1,4 @@
+"use strict";
 var Nikotama = function() {
     this.JSONPCount = 0;
 };
@@ -10,14 +11,18 @@ Nikotama.prototype.get = function(url,callback){
     head.appendChild(script);
     this.JSONPCount++;
 };
-Nikotama.prototype.setJSONPFunction = function(url,callback){
+Nikotama.prototype.setJSONPFunction = function(url,callback,fixedCallbackName){
     var pad = function(n) { return n < 10 ? '0' + n : n; };
-    var d = new Date();
-    JSONPCallback = '__nikotama_cb_';
-    JSONPCallback += d.getFullYear();
-    JSONPCallback += pad(d.getMonth()+1);
-    JSONPCallback += pad(d.getDate());
-    JSONPCallback += this.JSONPCount;
+    if('undefined' !== typeof fixedCallbackName){
+        JSONPCallback = fixedCallbackName;
+    }else{
+        var d = new Date();
+        JSONPCallback = '__nikotama_cb_';
+        JSONPCallback += d.getFullYear();
+        JSONPCallback += pad(d.getMonth()+1);
+        JSONPCallback += pad(d.getDate());
+        JSONPCallback += this.JSONPCount;
+    }
     window[JSONPCallback] = function(data){
         try{
             callback(data);
