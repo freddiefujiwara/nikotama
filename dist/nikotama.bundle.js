@@ -64,11 +64,9 @@
 	    head.appendChild(script);
 	    this.JSONPCount++;
 	};
-	Nikotama.prototype.setJSONPFunction = function(url,callback,fixedCallbackName){
+	Nikotama.prototype.setJSONPFunction = function(url,callback,JSONPCallback){
 	    var pad = function(n) { return n < 10 ? '0' + n : n; };
-	    if('undefined' !== typeof fixedCallbackName){
-	        JSONPCallback = fixedCallbackName;
-	    }else{
+	    if('undefined' === typeof JSONPCallback){
 	        var d = new Date();
 	        JSONPCallback = '__nikotama_cb_';
 	        JSONPCallback += d.getFullYear();
