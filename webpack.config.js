@@ -1,6 +1,6 @@
 module.exports = {
     entry: {
-        app: './src/index.js'
+        nikotama: './src/index.js'
     },
     output: {
         path: './dist',
