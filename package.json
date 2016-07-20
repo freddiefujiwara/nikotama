@@ -1,0 +1,28 @@
+{
+  "name": "nikotama",
+  "version": "1.0.0",
+  "description": "A JavaScript micro-library",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freddiefujiwara/nikotama.git"
+  },
+  "keywords": [
+    "microlibrary",
+    "library"
+  ],
+  "author": "Fumikazu Fujiwara <npm@ze.gs> (http://freddiefujiwara.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/freddiefujiwara/nikotama/issues"
+  },
+  "homepage": "https://github.com/freddiefujiwara/nikotama#readme",
+  "devDependencies": {
+    "mocha": "^2.5.3",
+    "webpack": "^1.13.1"
+  }
+}
