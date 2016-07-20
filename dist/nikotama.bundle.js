@@ -66,6 +66,7 @@
 	};
 	Nikotama.prototype.setJSONPFunction = function(url,callback,JSONPCallback){
 	    var pad = function(n) { return n < 10 ? '0' + n : n; };
+	    console.log(typeof JSONPCallback);
 	    if('undefined' === typeof JSONPCallback){
 	        var d = new Date();
 	        JSONPCallback = '__nikotama_cb_';
