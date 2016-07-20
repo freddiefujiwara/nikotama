@@ -1,1 +1,1 @@
-window.$ =  require("./nikotama.js");
+window.$nikotama =  require("./nikotama.js");
