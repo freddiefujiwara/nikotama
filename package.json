@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/freddiefujiwara/nikotama#readme",
   "devDependencies": {
+    "mocha": "^2.5.3",
     "webpack": "^1.13.1"
   }
 }
