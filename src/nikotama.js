@@ -2,10 +2,10 @@
 var Nikotama = function() {
     this.JSONPCount = 0;
 };
-Nikotama.prototype.get = function(url,callback){
+Nikotama.prototype.get = function(url,callback,JSONPCallback){
     var script   = document.createElement('script');
     script.async = true;
-    script.src   = this.setJSONPFunction(url,callback);
+    script.src   = this.setJSONPFunction(url,callback,JSONPCallback);
     script.type  = 'application/javascript';
     var head =  document.getElementsByTagName('head')[0];
     head.appendChild(script);
