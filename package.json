@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "mocha",
-    "lint": "./node_modules/.bin/eslint src/",
+    "lint": "eslint src/",
     "build": "webpack"
   },
   "repository": {

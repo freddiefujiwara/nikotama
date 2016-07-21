@@ -31,7 +31,7 @@ describe('Nikotama', function () {
     it('should be a function', function () {
       assert.equal('function', typeof nikotama.get)
     })
-    it('should return add the script ', function () {
+    it('should add the script tag to <head>', function () {
       nikotama.get('http://example.com', function (data) {})
       var head = global.document.getElementById('head')
       assert.equal(0, head.innerHTML.indexOf('<script'))
