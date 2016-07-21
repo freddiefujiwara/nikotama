@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "mocha",
+    "lint": "./node_modules/.bin/eslint src/",
     "build": "webpack"
   },
   "repository": {
@@ -22,6 +23,10 @@
   },
   "homepage": "https://github.com/freddiefujiwara/nikotama#readme",
   "devDependencies": {
+    "eslint": "^3.1.1",
+    "eslint-config-standard": "^5.3.5",
+    "eslint-plugin-promise": "^2.0.0",
+    "eslint-plugin-standard": "^2.0.0",
     "jsdom": "^9.4.1",
     "mocha": "^2.5.3",
     "webpack": "^1.13.1"
