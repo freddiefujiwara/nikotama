@@ -1,6 +1,7 @@
 /**
- * @classdesc This is Nikotama Class
- * @constructor
+ * Nikotama
+ * @class
+ * @name Nikotama
  */
 'use strict'
 var Nikotama = function () {
@@ -8,9 +9,11 @@ var Nikotama = function () {
 }
 /**
  * get
- * @param url
- * @param callback
- * @param JSONPCallback
+ * @instance
+ * @memberOf Nikotama
+ * @param {String} url
+ * @param {Function} callback
+ * @param {String} JSONPCallback
  */
 Nikotama.prototype.get = function (url, callback, JSONPCallback) {
   // create <script async="" src="[url]" type="application/javascript"></script>
@@ -25,9 +28,12 @@ Nikotama.prototype.get = function (url, callback, JSONPCallback) {
 }
 /**
  * setJSONPFunction
- * @param url
- * @param callback
- * @param JSONPCallback
+ * @instance
+ * @memberOf Nikotama
+ * @param {String} url
+ * @param {Function} callback
+ * @param {String} JSONPCallback
+ * @return {String} JSONP URL
  */
 Nikotama.prototype.setJSONPFunction = function (url, callback, JSONPCallback) {
   // generate temporary functoin for JSONP
@@ -54,9 +60,11 @@ Nikotama.prototype.setJSONPFunction = function (url, callback, JSONPCallback) {
 }
 /**
  * on
- * @param target
- * @param event
- * @param callback
+ * @instance
+ * @memberOf Nikotama
+ * @param {Dom} target
+ * @param {String} event
+ * @param {Function} callback
  */
 Nikotama.prototype.on = function (target, event, callback) {
   if (document.addEventListener) {
