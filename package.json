@@ -30,6 +30,7 @@
     "eslint-plugin-promise": "^2.0.0",
     "eslint-plugin-standard": "^2.0.0",
     "istanbul": "^0.4.4",
+    "jsdom": "^9.4.1",
     "mocha": "^2.5.3",
     "mocha-lcov-reporter": "^1.2.0",
     "webpack": "^1.13.1"
