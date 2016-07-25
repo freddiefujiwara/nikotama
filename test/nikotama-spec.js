@@ -80,7 +80,17 @@ describe('Nikotama', function () {
     it('should add event handler ', function (done) {
       var button = global.document.getElementById('button')
       nikotama.on(button, 'click', function (data) { done() })
-            // emulate click event
+      // emulate click event
+      var evt = document.createEvent('HTMLEvents')
+      evt.initEvent('click', false, true)
+      button.dispatchEvent(evt)
+    })
+    it('should atach event handler ', function (done) {
+      var button = global.document.getElementById('button')
+      // fake attachEvent
+      button.attachEvent = button.addEventListener
+      nikotama.on(button, 'click', function (data) { done() })
+      // emulate click event
       var evt = document.createEvent('HTMLEvents')
       evt.initEvent('click', false, true)
       button.dispatchEvent(evt)
