@@ -122,8 +122,8 @@
 	Nikotama.prototype.on = function (target, event, callback) {
 	  if (typeof target.addEventListener === 'function') {
 	    target.addEventListener(event, callback, false)
-	  } else if (typeof target.atachEvent === 'function') {
-	    target.atachEvent(event, callback)
+	  } else if (typeof target.attachEvent === 'function') {
+	    target.attachEvent(event, callback)
 	  }
 	}
 
