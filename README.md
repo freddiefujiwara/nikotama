@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/freddiefujiwara/nikotama.svg?branch=master)](https://travis-ci.org/freddiefujiwara/nikotama)
 [![Coverage Status](https://coveralls.io/repos/github/freddiefujiwara/nikotama/badge.svg?branch=master)](https://coveralls.io/github/freddiefujiwara/nikotama?branch=master)
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
 # nikotama
 A JavaScript micro-library
 
