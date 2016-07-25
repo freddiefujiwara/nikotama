@@ -89,11 +89,15 @@ describe('Nikotama', function () {
       var button = global.document.getElementById('button')
       // fake attachEvent
       button.attachEvent = button.addEventListener
+      button.addEventListener = undefined
       nikotama.on(button, 'click', function (data) { done() })
       // emulate click event
       var evt = document.createEvent('HTMLEvents')
       evt.initEvent('click', false, true)
       button.dispatchEvent(evt)
+      // cleaning
+      button.addEventListener = button.attachEvent;
+      button.attachEvent = undefined;
     })
   })
 })
