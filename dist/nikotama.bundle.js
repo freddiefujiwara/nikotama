@@ -120,11 +120,10 @@
 	 * @param {Function} callback
 	 */
 	Nikotama.prototype.on = function (target, event, callback) {
-	  if (document.addEventListener) {
+	  if (typeof target.addEventListener === 'function') {
 	    target.addEventListener(event, callback, false)
-	  } else if (document.attachEvent) {
-	    target[event + callback] = function () { return callback.apply(target, arguments) }
-	    target.attachEvent('on' + event, target[event + callback])
+	  } else if (typeof target.atachEvent === 'function') {
+	    target.atachEvent(event, callback)
 	  }
 	}
 
