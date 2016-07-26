@@ -80,24 +80,39 @@ describe('Nikotama', function () {
     it('should add event handler ', function (done) {
       var button = global.document.getElementById('button')
       nikotama.on(button, 'click', function (data) { done() })
-      // emulate click event
+            // emulate click event
       var evt = document.createEvent('HTMLEvents')
       evt.initEvent('click', false, true)
       button.dispatchEvent(evt)
     })
     it('should atach event handler ', function (done) {
       var button = global.document.getElementById('button')
-      // fake attachEvent
+            // fake attachEvent
       button.attachEvent = button.addEventListener
       button.addEventListener = undefined
       nikotama.on(button, 'click', function (data) { done() })
-      // emulate click event
+            // emulate click event
       var evt = document.createEvent('HTMLEvents')
       evt.initEvent('click', false, true)
       button.dispatchEvent(evt)
-      // cleaning
-      button.addEventListener = button.attachEvent;
-      button.attachEvent = undefined;
+            // cleaning
+      button.addEventListener = button.attachEvent
+      button.attachEvent = undefined
+    })
+  })
+  describe('#parseURL', function () {
+    it('should be a function', function () {
+      assert.equal('function', typeof nikotama.parseURL)
+    })
+    it('should parse', function () {
+      assert.deepEqual(nikotama.parseURL('https://example.com:8080/pathname/?key=val#hash'),
+            { protocol: 'https:',
+                hostname: 'example.com',
+                port: '8080',
+                pathname: '/pathname/',
+                query: '?key=val',
+                hash: '#hash',
+                host: 'example.com:8080' })
     })
   })
 })
