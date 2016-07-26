@@ -73,5 +73,25 @@ Nikotama.prototype.on = function (target, event, callback) {
     target.attachEvent(event, callback)
   }
 }
+/**
+ * parseURL
+ * @instance
+ * @memberOf Nikotama
+ * @param {String} url
+ * @return {Object} {protocol:"protocol",hostname:"hostname",port:"port",pathname:"pathname",query:"query",hash:"hash",host:"host"}
+ */
+Nikotama.prototype.parseURL = function (url) {
+  var a = document.createElement('a')
+  a.href = url
+  return {
+    protocol: a.protocol,
+    hostname: a.hostname,
+    port: a.port,
+    pathname: a.pathname,
+    query: a.search,
+    hash: a.hash,
+    host: a.host
+  }
+}
 
 module.exports = new Nikotama()
