@@ -16,14 +16,14 @@ var Nikotama = function () {
  * @param {String} JSONPCallback
  */
 Nikotama.prototype.get = function (url, callback, JSONPCallback) {
-  // create <script async="" src="[url]" type="application/javascript"></script>
+    // create <script async="" src="[url]" type="application/javascript"></script>
   var script = document.createElement('script')
   script.async = true
   script.src = this.setJSONPFunction(url, callback, JSONPCallback)
   script.type = 'application/javascript'
   var head = document.getElementsByTagName('head')[0]
   head.appendChild(script)
-  // prevent to duplicate of callback function name
+    // prevent to duplicate of callback function name
   this.JSONPCount++
 }
 /**
@@ -36,7 +36,7 @@ Nikotama.prototype.get = function (url, callback, JSONPCallback) {
  * @return {String} JSONP URL
  */
 Nikotama.prototype.setJSONPFunction = function (url, callback, JSONPCallback) {
-  // generate temporary functoin for JSONP
+    // generate temporary functoin for JSONP
   var pad = function (n) { return n < 10 ? '0' + n : n }
   if (typeof JSONPCallback === 'undefined') {
     var d = new Date()
@@ -46,15 +46,15 @@ Nikotama.prototype.setJSONPFunction = function (url, callback, JSONPCallback) {
     JSONPCallback += pad(d.getDate())
     JSONPCallback += this.JSONPCount
   }
-  // set global function
+    // set global function
   window[JSONPCallback] = function (data) {
     try {
       callback(data)
     } catch (e) {}
-    // cleaning
+        // cleaning
     window[JSONPCallback] = undefined
   }
-  // add callback function to end of the url
+    // add callback function to end of the url
   url += (url.indexOf('?') === -1) ? '?callback=' + JSONPCallback : '&callback=' + JSONPCallback
   return url
 }
@@ -91,6 +91,31 @@ Nikotama.prototype.parseURL = function (url) {
     query: a.search,
     hash: a.hash,
     host: a.host
+  }
+}
+/**
+ * xhr
+ * @instance
+ * @memberOf Nikotama
+ * @param {String} url
+ * @param {Function} callback
+ */
+Nikotama.prototype.xhr = function (url, callback) {
+  var xhr = typeof window.ActiveXObject !== 'undefined'
+        ? new window.ActiveXObject('Microsoft.XMLHTTP') // IE < 9
+        : new window.XMLHttpRequest()
+
+  if (xhr) {
+    xhr.open('GET', url, true)
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 &&
+          xhr.status === 200 &&
+          typeof callback === 'function') {
+        callback(JSON.parse(xhr.responseText))
+      }
+    }
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+    xhr.send()
   }
 }
 
