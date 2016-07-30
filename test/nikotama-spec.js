@@ -1,9 +1,13 @@
 'use strict'
 var nikotama = require('../src/nikotama.js')
 var jsdom = require('jsdom')
+var sinon = require('sinon')
 var assert = require('assert')
 var gd = global.document
 var gw = global.window
+var gx = global.XMLHttpRequest
+var fakeXHR
+var requests = []
 
 var currentDate = ''
 beforeEach(function () {
@@ -14,6 +18,11 @@ beforeEach(function () {
   currentDate = d.getFullYear()
   currentDate += pad(d.getMonth() + 1)
   currentDate += pad(d.getDate())
+  fakeXHR = sinon.useFakeXMLHttpRequest()
+  global.window.XMLHttpRequest = fakeXHR
+  fakeXHR.onCreate = function (xhr) {
+    requests.push(xhr)
+  }
 })
 
 afterEach(function () {
@@ -21,6 +30,8 @@ afterEach(function () {
   global.window = gw
   nikotama.JSONPCount = 0
   currentDate = ''
+  fakeXHR.restore()
+  requests = []
 })
 
 describe('Nikotama', function () {
@@ -113,6 +124,29 @@ describe('Nikotama', function () {
                 query: '?key=val',
                 hash: '#hash',
                 host: 'example.com:8080' })
+    })
+  })
+  describe('#xhr', function () {
+    it('should be a function', function () {
+      assert.equal('function', typeof nikotama.xhr)
+    })
+    it('should call & parse for api', function () {
+      var callback = sinon.spy()
+      nikotama.xhr('https://example.com/api', callback)
+      assert.equal(1, requests.length)
+      requests[0].respond(200,
+                          { 'Content-Type': 'application/json' },
+                          '[{ "id": 1, "name": "Fumikazu Fujiwara" }]')
+      assert.ok(callback.calledWith([{ id: 1, name: 'Fumikazu Fujiwara' }]))
+    })
+    it('should not call & parse for  wrongapi', function () {
+      var callback = sinon.spy()
+      nikotama.xhr('https://example.com/wrongapi', callback)
+      assert.equal(1, requests.length)
+      requests[0].respond(400,
+                          { 'Content-Type': 'application/json' },
+                          '[{ "id": 1, "name": "Fumikazu Fujiwara" }]')
+      assert.ok(callback.neverCalledWith([{ id: 1, name: 'Fumikazu Fujiwara' }]))
     })
   })
 })
